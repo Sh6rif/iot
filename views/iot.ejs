@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IOT</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0px;
+      }
+      body {
+        background: linear-gradient(to bottom, #121212, #0b1215);
+        height: 100vh;
+        position: relative;
+      }
+      main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30%;
+      }
+      button {
+        cursor: pointer;
+        color: white;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
+        width: 100%;
+      }
+      button:hover {
+        background-color: blue;
+        border-color: darkblue;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      .btn-on {
+        background-color: green;
+        border-color: darkgreen;
+        margin-bottom: 8px;
+      }
+      .btn-off {
+        background-color: red;
+        border-color: darkred;
+      }
+      .dot {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: green;
+        border-radius: 50%;
+        z-index: -1;
+      }
+      @keyframes moveDot {
+        0% {
+          transform: translateY(0) rotate(0);
+        }
+        100% {
+          transform: translateY(-500px) rotate(360deg);
+        }
+      }
+      @keyframes moveDot {
+        0% {
+          transform: translateY(0) rotate(0);
+        }
+        100% {
+          transform: translateY(-500px) rotate(360deg);
+        }
+      }
+      .dot1 {
+        top: 20%;
+        left: 20%;
+        animation: moveDot 5s infinite linear;
+      }
+      .dot2 {
+        top: 60%;
+        left: 70%;
+        animation: moveDot 6s infinite linear;
+      }
+      .dot3 {
+        top: 80%;
+        left: 40%;
+        animation: moveDot 7s infinite linear;
+      }
+      .dot4 {
+        top: 40%;
+        left: 80%;
+        animation: moveDot 4s infinite linear;
+      }
+      .dot5 {
+        top: 70%;
+        left: 30%;
+        animation: moveDot 8s infinite linear;
+      }
+      @media (max-width: 768px) {
+        main {
+          width: 40%;
+        }
+      }
+      @media (max-width: 425px) {
+        main {
+          width: 60%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div>
+          <button class="btn-on" onclick="change('on',this)">ON</button>
+        </div>
+        <div>
+          <button class="btn-off" onclick="change('off',this)">OFF</button>
+        </div>
+      </section>
+    </main>
+    <div class="dot dot1"></div>
+    <div class="dot dot2"></div>
+    <div class="dot dot3"></div>
+    <div class="dot dot4"></div>
+    <div class="dot dot5"></div>
+    <script>
+      async function change(value, button) {
+        document.querySelectorAll("button").forEach((btn) => {
+          btn.style.backgroundColor = "";
+          btn.style.borderColor = "";
+        });
+        button.style.backgroundColor = "blue";
+        button.style.borderColor = "darkblue";
+        try {
+          const response = await fetch("/change-led-status", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ newValue: value }),
+          });
+          if (!response.ok) {
+            throw new Error("Failed to update LED status");
+          }
+          console.log("LED status updated successfully.");
+        } catch (error) {
+          console.error("Error updating LED status:", error);
+        }
+      }
+    </script>
+  </body>
+</html>
