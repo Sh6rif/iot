@@ -12,16 +12,33 @@
       body {
         background: linear-gradient(to bottom, #121212, #0b1215);
         height: 100vh;
-        position: relative;
       }
       main {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 30%;
+        width: 50%;
+      }
+      section div {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+      svg {
+        fill: green;
+        position: relative;
+        top: -32px;
+      }
+      .svg2 {
+        fill: red;
+        top: 0;
+      }
+      .svleft {
+        transform: scaleX(-1);
       }
       button {
+        flex-basis: 72%;
         cursor: pointer;
         color: white;
         border: 1px solid;
@@ -56,18 +73,10 @@
       }
       @keyframes moveDot {
         0% {
-          transform: translateY(0) rotate(0);
+          transform: translateY(0);
         }
         100% {
-          transform: translateY(-500px) rotate(360deg);
-        }
-      }
-      @keyframes moveDot {
-        0% {
-          transform: translateY(0) rotate(0);
-        }
-        100% {
-          transform: translateY(-500px) rotate(360deg);
+          transform: translateY(-500px);
         }
       }
       .dot1 {
@@ -97,12 +106,12 @@
       }
       @media (max-width: 768px) {
         main {
-          width: 40%;
+          width: 60%;
         }
       }
       @media (max-width: 425px) {
         main {
-          width: 60%;
+          width: 80%;
         }
       }
     </style>
@@ -111,10 +120,64 @@
     <main>
       <section>
         <div>
-          <button class="btn-on" onclick="change('on',this)">ON</button>
+          <svg
+            class="svg1 svleft"
+            width="50px"
+            height="50px"
+            viewBox="0 0 122.88 121.46"
+          >
+            <g>
+              <path
+                class="st0"
+                d="M12.35,121.46c-8.01-9.72-11.92-19.29-12.31-28.71C-0.78,73.01,10.92,58.28,28.3,47.67 c18.28-11.16,37.08-13.93,55.36-22.25C92.79,21.27,103.68,14.47,121.8,0c5.92,15.69-12.92,40.9-43.52,54.23 c9.48,0.37,19.69-2.54,30.85-9.74c-0.76,19.94-16.46,32.21-51.3,36.95c7.33,2.45,16.09,2.58,27.27-0.58 C74.33,116.81,29.9,91.06,12.35,121.46L12.35,121.46z"
+              />
+            </g>
+          </svg>
+          <button class="btn-on" onclick="change('on',this,'svg1')">ON</button>
+          <svg
+            class="svg1"
+            width="50px"
+            height="50px"
+            viewBox="0 0 122.88 121.46"
+          >
+            <g>
+              <path
+                class="st0"
+                d="M12.35,121.46c-8.01-9.72-11.92-19.29-12.31-28.71C-0.78,73.01,10.92,58.28,28.3,47.67 c18.28-11.16,37.08-13.93,55.36-22.25C92.79,21.27,103.68,14.47,121.8,0c5.92,15.69-12.92,40.9-43.52,54.23 c9.48,0.37,19.69-2.54,30.85-9.74c-0.76,19.94-16.46,32.21-51.3,36.95c7.33,2.45,16.09,2.58,27.27-0.58 C74.33,116.81,29.9,91.06,12.35,121.46L12.35,121.46z"
+              />
+            </g>
+          </svg>
         </div>
         <div>
-          <button class="btn-off" onclick="change('off',this)">OFF</button>
+          <svg
+            class="svg2 svleft"
+            width="50px"
+            height="50px"
+            viewBox="0 0 122.88 121.46"
+          >
+            <g>
+              <path
+                class="st0"
+                d="M12.35,121.46c-8.01-9.72-11.92-19.29-12.31-28.71C-0.78,73.01,10.92,58.28,28.3,47.67 c18.28-11.16,37.08-13.93,55.36-22.25C92.79,21.27,103.68,14.47,121.8,0c5.92,15.69-12.92,40.9-43.52,54.23 c9.48,0.37,19.69-2.54,30.85-9.74c-0.76,19.94-16.46,32.21-51.3,36.95c7.33,2.45,16.09,2.58,27.27-0.58 C74.33,116.81,29.9,91.06,12.35,121.46L12.35,121.46z"
+              />
+            </g>
+          </svg>
+          <button class="btn-off" onclick="change('off',this,'svg2')">
+            OFF
+          </button>
+          <svg
+            class="svg2"
+            width="50px"
+            height="50px"
+            viewBox="0 0 122.88 121.46"
+          >
+            <g>
+              <path
+                class="st0"
+                d="M12.35,121.46c-8.01-9.72-11.92-19.29-12.31-28.71C-0.78,73.01,10.92,58.28,28.3,47.67 c18.28-11.16,37.08-13.93,55.36-22.25C92.79,21.27,103.68,14.47,121.8,0c5.92,15.69-12.92,40.9-43.52,54.23 c9.48,0.37,19.69-2.54,30.85-9.74c-0.76,19.94-16.46,32.21-51.3,36.95c7.33,2.45,16.09,2.58,27.27-0.58 C74.33,116.81,29.9,91.06,12.35,121.46L12.35,121.46z"
+              />
+            </g>
+          </svg>
         </div>
       </section>
     </main>
@@ -124,10 +187,16 @@
     <div class="dot dot4"></div>
     <div class="dot dot5"></div>
     <script>
-      async function change(value, button) {
+      async function change(value, button, name) {
         document.querySelectorAll("button").forEach((btn) => {
           btn.style.backgroundColor = "";
           btn.style.borderColor = "";
+        });
+        document.querySelectorAll("svg").forEach((svg) => {
+          svg.style.fill = "";
+        });
+        document.querySelectorAll("." + name).forEach((svg) => {
+          svg.style.fill = "blue";
         });
         button.style.backgroundColor = "blue";
         button.style.borderColor = "darkblue";
